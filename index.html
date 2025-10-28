@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Спортивное питание</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Спортивное питание v1.2</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -142,25 +145,6 @@
             opacity: 0.8;
             transform: translateY(0);
         }
-        
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: var(--tg-theme-hint-color, #999999);
-        }
-        
-        .error-image {
-            width: 80px;
-            height: 80px;
-            background-color: var(--tg-theme-hint-color, #eeeeee);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--tg-theme-hint-color, #999999);
-            font-size: 12px;
-            margin: 0 auto;
-        }
     </style>
 </head>
 <body>
@@ -178,7 +162,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-g/wc1000/8090771380.jpg" 
                      alt="Протеин сывороточный (WHEY GOLD 100%), 960 гр"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Протеин сывороточный (WHEY GOLD 100%), 960 гр</div>
             <div class="product-description">Сывороточный протеин премиум-класса с высокой степенью очистки</div>
@@ -193,7 +177,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-4/wc1000/6723488416.jpg" 
                      alt="Сухой пищевой сывороточный протеин PROTEIN, 1 кг"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Сухой пищевой сывороточный протеин "PROTEIN", 1 кг</div>
             <div class="product-description">Первый русский протеин - качественный сывороточный белок</div>
@@ -208,7 +192,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7306998301.jpg" 
                      alt="Протеин сывороточный Soul Way, ванильный протеин"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Протеин сывороточный Soul Way, ванильный протеин / 1020 гр 34 порций</div>
             <div class="product-description">Качественный сывороточный протеин с ванильным вкусом</div>
@@ -226,7 +210,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-0/wc1000/8112383244.jpg" 
                      alt="Гейнер банан, 1кг"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Гейнер банан, 1кг</div>
             <div class="product-description">Высококалорийный гейнер с банановым вкусом для набора массы</div>
@@ -241,7 +225,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-e/wc1000/7324896110.jpg" 
                      alt="Гейнер для набора массы Земляника 1400 г"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Гейнер для набора массы Земляника 1400 г.</div>
             <div class="product-description">Сбалансированный гейнер с земляничным вкусом</div>
@@ -256,7 +240,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-4/wc1000/8200100524.jpg" 
                      alt="Гейнер для набора массы, 2кг, двойной шоколад"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Гейнер для набора массы, 2кг, двойной шоколад</div>
             <div class="product-description">Мощный массонаборный комплекс с шоколадным вкусом</div>
@@ -274,7 +258,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-f/wc1000/7958945787.jpg" 
                      alt="L Карнитин Carnitine, 90 капсул"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">L Карнитин Carnitine, 90 капсул</div>
             <div class="product-description">Витамины для похудения и коррекции веса</div>
@@ -289,7 +273,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-w/wc1000/7845585764.jpg" 
                      alt="Жиросжигатель для похудения Fat Burner"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Жиросжигатель для похудения Fat Burner, 60 капсул</div>
             <div class="product-description">БАД для снижения веса для женщин и мужчин</div>
@@ -304,7 +288,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-s/wc1000/7401633796.jpg" 
                      alt="Берберин для похудения 500мг"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Берберин для похудения 500мг, ENBIO, 60 капсул</div>
             <div class="product-description">Эффективный жиросжигатель для снижения веса</div>
@@ -322,7 +306,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-6/wc1000/8082850362.jpg" 
                      alt="Креатин Моногидрат Микронизированный"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Креатин Моногидрат Микронизированный, 200 гр</div>
             <div class="product-description">Без вкуса, нейтральный, 40 порций</div>
@@ -337,7 +321,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-b/wc1000/8158767095.jpg" 
                      alt="Креатин моногидрат порошок"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Креатин моногидрат порошок</div>
             <div class="product-description">Чистый креатин для увеличения силы и выносливости</div>
@@ -352,7 +336,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7352719521.jpg" 
                      alt="Креатин моногидрат PWR"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Креатин моногидрат порошок 300 гр PWR</div>
             <div class="product-description">Creatine Monohydrate, без вкуса, 60 порций</div>
@@ -370,7 +354,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-9/wc1000/7945401249.jpg" 
                      alt="Изотоник Электролит REDJAR"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Изотоник "Электролит REDJAR", бокс 60 таблеток</div>
             <div class="product-description">Шипучие таблетки, микс вкусов для восстановления</div>
@@ -385,7 +369,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-r/wc1000/8172446751.jpg" 
                      alt="Изотоник Юниорсинтез"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Изотоник Юниорсинтез 35 порций "Лесные ягоды"</div>
             <div class="product-description">Восстановление электролитов после тренировки</div>
@@ -400,7 +384,7 @@
             <div class="product-image">
                 <img src="https://ir.ozone.ru/s3/multimedia-1-9/wc1000/7512626349.jpg" 
                      alt="Изотоник WillPower"
-                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+                     onerror="this.style.opacity='0'">
             </div>
             <div class="product-title">Изотоник WillPower, лайм, 14 шипучих таблеток</div>
             <div class="product-description">Спортивное питание для восстановления водно-солевого баланса</div>
@@ -454,8 +438,6 @@
                 };
                 tg.sendData(JSON.stringify(data));
             }
-            
-            // Можно добавить аналитику здесь
         }
         
         // Функция отслеживания просмотров категорий
@@ -479,24 +461,6 @@
         
         // Показываем кнопку "Назад"
         tg.BackButton.show();
-        
-        // Предзагрузка изображений для лучшего UX
-        function preloadImages() {
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                const src = img.getAttribute('src');
-                if (src) {
-                    const image = new Image();
-                    image.src = src;
-                }
-            });
-        }
-        
-        // Запускаем предзагрузку после загрузки страницы
-        window.addEventListener('load', preloadImages);
-    </script>
-</body>
-</html>
     </script>
 </body>
 </html>
