@@ -25,6 +25,10 @@
             margin-bottom: 15px;
             border-bottom: 1px solid var(--tg-theme-hint-color, #999999);
             padding-bottom: 10px;
+            background-color: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .tab {
@@ -37,6 +41,8 @@
             border-radius: 20px;
             margin-right: 5px;
             transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
         }
         
         .tab.active {
@@ -50,6 +56,12 @@
         
         .products-container.active {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .product-card {
@@ -58,6 +70,11 @@
             padding: 15px;
             margin-bottom: 15px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-2px);
         }
         
         .product-image {
@@ -69,14 +86,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            color: var(--tg-theme-hint-color, #999999);
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
         }
         
         .product-title {
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 16px;
+            line-height: 1.3;
         }
         
         .product-description {
@@ -102,15 +126,40 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-size: 14px;
         }
         
         .buy-button:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
         
         .buy-button:active {
             opacity: 0.8;
+            transform: translateY(0);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+        
+        .error-image {
+            width: 80px;
+            height: 80px;
+            background-color: var(--tg-theme-hint-color, #eeeeee);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--tg-theme-hint-color, #999999);
+            font-size: 12px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -126,135 +175,240 @@
     <!-- Протеин -->
     <div id="protein" class="products-container active">
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Whey Protein Gold Standard</div>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-g/wc1000/8090771380.jpg" 
+                     alt="Протеин сывороточный (WHEY GOLD 100%), 960 гр"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Протеин сывороточный (WHEY GOLD 100%), 960 гр</div>
             <div class="product-description">Сывороточный протеин премиум-класса с высокой степенью очистки</div>
             <div class="product-price">2 990 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Whey Protein Gold Standard', 2990)">Купить</button>
+            <a href="https://www.ozon.ru/product/protein-syvorotochnyy-whey-gold-100-960-gr-1952710745/?at=Z8tXBVvrOsZqqZ74fWKmzNBsojMpQqIAZrXyKtrRm3Qj" 
+               class="buy-button" target="_blank" onclick="trackClick('WHEY GOLD 100%')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">ISO-100 Hydrolyzed</div>
-            <div class="product-description">Гидролизованный изолят сывороточного протеина</div>
-            <div class="product-price">3 490 ₽</div>
-            <button class="buy-button" onclick="buyProduct('ISO-100 Hydrolyzed', 3490)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-4/wc1000/6723488416.jpg" 
+                     alt="Сухой пищевой сывороточный протеин PROTEIN, 1 кг"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Сухой пищевой сывороточный протеин "PROTEIN", 1 кг</div>
+            <div class="product-description">Первый русский протеин - качественный сывороточный белок</div>
+            <div class="product-price">1 890 ₽</div>
+            <a href="https://www.ozon.ru/product/pervyy-russkiy-protein-suhoy-pishchevoy-syvorotochnyy-protein-protein-1-kg-379913038/?at=nRtrBqwAMf5OXpOQC38Y580uqXvW5qi8YLoEEh7Pjwk8" 
+               class="buy-button" target="_blank" onclick="trackClick('PROTEIN 1 кг')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Casein Pro</div>
-            <div class="product-description">Мицеллярный казеин для медленного усвоения</div>
-            <div class="product-price">2 790 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Casein Pro', 2790)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-1/wc1000/7306998301.jpg" 
+                     alt="Протеин сывороточный Soul Way, ванильный протеин"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Протеин сывороточный Soul Way, ванильный протеин / 1020 гр 34 порций</div>
+            <div class="product-description">Качественный сывороточный протеин с ванильным вкусом</div>
+            <div class="product-price">2 490 ₽</div>
+            <a href="https://www.ozon.ru/product/protein-syvorotochnyy-soul-way-vanilnyy-protein-1020-gr-34-portsiy-1744996884/?at=EqtkXJyVRFQ39RGRuG9nlEPsv2lG0Dc3GwgW7HJzN9wX" 
+               class="buy-button" target="_blank" onclick="trackClick('Soul Way ванильный')">
+                Купить на Ozon
+            </a>
         </div>
     </div>
 
     <!-- Гейнеры -->
     <div id="gainer" class="products-container">
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Serious Mass</div>
-            <div class="product-description">Высококалорийный гейнер для набора массы</div>
-            <div class="product-price">3 290 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Serious Mass', 3290)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-0/wc1000/8112383244.jpg" 
+                     alt="Гейнер банан, 1кг"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Гейнер банан, 1кг</div>
+            <div class="product-description">Высококалорийный гейнер с банановым вкусом для набора массы</div>
+            <div class="product-price">1 290 ₽</div>
+            <a href="https://www.ozon.ru/product/geyner-banan-1kg-1843996137/?at=79tn7xM43IBykoXZuowNzOXC33V7J2hlDw33QsKLO5BO" 
+               class="buy-button" target="_blank" onclick="trackClick('Гейнер банан')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">True-Mass</div>
-            <div class="product-description">Сбалансированный гейнер с комплексом белков</div>
-            <div class="product-price">2 890 ₽</div>
-            <button class="buy-button" onclick="buyProduct('True-Mass', 2890)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-e/wc1000/7324896110.jpg" 
+                     alt="Гейнер для набора массы Земляника 1400 г"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Гейнер для набора массы Земляника 1400 г.</div>
+            <div class="product-description">Сбалансированный гейнер с земляничным вкусом</div>
+            <div class="product-price">1 590 ₽</div>
+            <a href="https://www.ozon.ru/product/geyner-dlya-nabora-massy-zemlyanika-1400-g-384319967/?at=46tRkQPMLTj2DGK0ULvEyQpTYNr9wVHQyVYVKIAZg1vN" 
+               class="buy-button" target="_blank" onclick="trackClick('Гейнер земляника')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Mass-Tech</div>
-            <div class="product-description">Мощный массонаборный комплекс</div>
-            <div class="product-price">4 190 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Mass-Tech', 4190)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-4/wc1000/8200100524.jpg" 
+                     alt="Гейнер для набора массы, 2кг, двойной шоколад"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Гейнер для набора массы, 2кг, двойной шоколад</div>
+            <div class="product-description">Мощный массонаборный комплекс с шоколадным вкусом</div>
+            <div class="product-price">2 190 ₽</div>
+            <a href="https://www.ozon.ru/product/geyner-dlya-nabora-massy-2kg-dvoynoy-shokolad-155357796/?at=Y7tjBJYEGTj2DGK0ULvEyQpTYNr9wVHQyVYVKIAZg1vN" 
+               class="buy-button" target="_blank" onclick="trackClick('Гейнер шоколад')">
+                Купить на Ozon
+            </a>
         </div>
     </div>
 
     <!-- Жиросжигатели -->
     <div id="fatburner" class="products-container">
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Hydroxycut Hardcore</div>
-            <div class="product-description">Интенсивный жиросжигатель для опытных</div>
-            <div class="product-price">1 990 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Hydroxycut Hardcore', 1990)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-f/wc1000/7958945787.jpg" 
+                     alt="L Карнитин Carnitine, 90 капсул"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">L Карнитин Carnitine, 90 капсул</div>
+            <div class="product-description">Витамины для похудения и коррекции веса</div>
+            <div class="product-price">890 ₽</div>
+            <a href="https://www.ozon.ru/product/l-karnitin-carnitine-l-karnitin-90-kapsul-vitaminy-dlya-pohudeniya-i-korrektsii-vesa-1028670442/?at=Z8tXBVvrOsogRLZzhz3DyAQf2gWlwlHKxZRwnHQpA1gj" 
+               class="buy-button" target="_blank" onclick="trackClick('L Карнитин')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Lipo-6 Black</div>
-            <div class="product-description">Мультифазный жиросжигатель</div>
-            <div class="product-price">2 290 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Lipo-6 Black', 2290)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-w/wc1000/7845585764.jpg" 
+                     alt="Жиросжигатель для похудения Fat Burner"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Жиросжигатель для похудения Fat Burner, 60 капсул</div>
+            <div class="product-description">БАД для снижения веса для женщин и мужчин</div>
+            <div class="product-price">1 190 ₽</div>
+            <a href="https://www.ozon.ru/product/zhiroszhigatel-dlya-pohudeniya-fat-burner-bad-dlya-snizheniya-vesa-tabletki-dlya-643867409/?at=J8tgMmO30cmV604LUZz8G7BHkAp0ZLTE58Y3zcLrD1GY" 
+               class="buy-button" target="_blank" onclick="trackClick('Fat Burner')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Clenbutrol</div>
-            <div class="product-description">Термогенный жиросжигатель</div>
-            <div class="product-price">1 790 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Clenbutrol', 1790)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-s/wc1000/7401633796.jpg" 
+                     alt="Берберин для похудения 500мг"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Берберин для похудения 500мг, ENBIO, 60 капсул</div>
+            <div class="product-description">Эффективный жиросжигатель для снижения веса</div>
+            <div class="product-price">1 490 ₽</div>
+            <a href="https://www.ozon.ru/product/berberin-dlya-pohudeniya-500mg-enbio-60-kapsul-1687519736/?at=NOtwyrLDvc7NoAN9cjjmO5LuppQMNAh007g2XslNrYL8" 
+               class="buy-button" target="_blank" onclick="trackClick('Берберин')">
+                Купить на Ozon
+            </a>
         </div>
     </div>
 
     <!-- Креатин -->
     <div id="creatine" class="products-container">
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Creatine Monohydrate</div>
-            <div class="product-description">Креатин моногидрат 300 мг</div>
-            <div class="product-price">890 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Creatine Monohydrate', 890)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-6/wc1000/8082850362.jpg" 
+                     alt="Креатин Моногидрат Микронизированный"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Креатин Моногидрат Микронизированный, 200 гр</div>
+            <div class="product-description">Без вкуса, нейтральный, 40 порций</div>
+            <div class="product-price">790 ₽</div>
+            <a href="https://www.ozon.ru/product/kreatin-monogidrat-mikronizirovannyy-creatine-monohydrate-micronized-bez-vkusa-neytralnyy-banka-2190616742/?at=r2t4J0MPLf37n5JMUPYPExQHmxQpXPcYwKz5BhqOXvp8" 
+               class="buy-button" target="_blank" onclick="trackClick('Креатин микронизированный')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Creatine HCl</div>
-            <div class="product-description">Креатин гидрохлорид для лучшего усвоения</div>
-            <div class="product-price">1 290 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Creatine HCl', 1290)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-b/wc1000/8158767095.jpg" 
+                     alt="Креатин моногидрат порошок"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Креатин моногидрат порошок</div>
+            <div class="product-description">Чистый креатин для увеличения силы и выносливости</div>
+            <div class="product-price">690 ₽</div>
+            <a href="https://www.ozon.ru/product/kreatin-monogidrat-poroshok-2943099177/?at=Brtz29qpEiXQOMZmh64466WHzq7g8Liq9gnOrSkXGWA6" 
+               class="buy-button" target="_blank" onclick="trackClick('Креатин порошок')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Kre-Alkalyn</div>
-            <div class="product-description">Буферизованный креатин</div>
-            <div class="product-price">1 490 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Kre-Alkalyn', 1490)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-x/wc1000/7352719521.jpg" 
+                     alt="Креатин моногидрат PWR"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Креатин моногидрат порошок 300 гр PWR</div>
+            <div class="product-description">Creatine Monohydrate, без вкуса, 60 порций</div>
+            <div class="product-price">990 ₽</div>
+            <a href="https://www.ozon.ru/product/kreatin-monogidrat-poroshok-300-gr-pwr-creatine-monohydrate-bez-vkusa-60-portsiy-799297882/?at=ywtAVzDq9sMz5gr8TpYDzLkTwyOJYytLBBAoWTGPNjp7" 
+               class="buy-button" target="_blank" onclick="trackClick('Креатин PWR')">
+                Купить на Ozon
+            </a>
         </div>
     </div>
 
     <!-- Изотоники -->
     <div id="isotonic" class="products-container">
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Powerade Zero</div>
-            <div class="product-description">Изотонический напиток без сахара</div>
-            <div class="product-price">690 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Powerade Zero', 690)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-9/wc1000/7945401249.jpg" 
+                     alt="Изотоник Электролит REDJAR"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Изотоник "Электролит REDJAR", бокс 60 таблеток</div>
+            <div class="product-description">Шипучие таблетки, микс вкусов для восстановления</div>
+            <div class="product-price">890 ₽</div>
+            <a href="https://www.ozon.ru/product/tabletki-shipuchie-izotonik-elektrolit-redjar-miks-vkusov-boks-60-tabletok-543848911/?at=w0tgrz6JYcmK6rj7hvq72pESGWrE5tGA1kOvHyJpA6g" 
+               class="buy-button" target="_blank" onclick="trackClick('Изотоник REDJAR')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">Gatorade Thirst Quencher</div>
-            <div class="product-description">Восстановление электролитов</div>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-r/wc1000/8172446751.jpg" 
+                     alt="Изотоник Юниорсинтез"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Изотоник Юниорсинтез 35 порций "Лесные ягоды"</div>
+            <div class="product-description">Восстановление электролитов после тренировки</div>
             <div class="product-price">790 ₽</div>
-            <button class="buy-button" onclick="buyProduct('Gatorade Thirst Quencher', 790)">Купить</button>
+            <a href="https://www.ozon.ru/product/izotonik-yuniorsintez-35-portsiy-lesnye-yagody-1325163324/?at=Brtz29qpEijM7Ly5hrx8lNJsn6lg6YhyYMYqWsEvq8kE" 
+               class="buy-button" target="_blank" onclick="trackClick('Изотоник Юниорсинтез')">
+                Купить на Ozon
+            </a>
         </div>
         
         <div class="product-card">
-            <div class="product-image">Изображение товара</div>
-            <div class="product-title">ISO Plus</div>
-            <div class="product-description">Комплекс электролитов и углеводов</div>
-            <div class="product-price">990 ₽</div>
-            <button class="buy-button" onclick="buyProduct('ISO Plus', 990)">Купить</button>
+            <div class="product-image">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-9/wc1000/7512626349.jpg" 
+                     alt="Изотоник WillPower"
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"error-image\">Изображение<br>не загружено</div>'">
+            </div>
+            <div class="product-title">Изотоник WillPower, лайм, 14 шипучих таблеток</div>
+            <div class="product-description">Спортивное питание для восстановления водно-солевого баланса</div>
+            <div class="product-price">590 ₽</div>
+            <a href="https://www.ozon.ru/product/izotonik-laym-14-shipuchih-tabletok-sportivnoe-pitanie-willpower-1315585345/?at=36tWNJ36Lhy79lE9uB945gKFzOl5yMcYy1VMmFP9M6kB" 
+               class="buy-button" target="_blank" onclick="trackClick('Изотоник WillPower')">
+                Купить на Ozon
+            </a>
         </div>
     </div>
 
@@ -282,25 +436,40 @@
             });
             
             event.target.classList.add('active');
+            
+            // Отслеживание просмотра категории
+            trackView(tabName);
         }
         
-        // Функция покупки товара
-        function buyProduct(productName, price) {
-            const data = {
-                product: productName,
-                price: price,
-                user: tg.initDataUnsafe.user
-            };
+        // Функция отслеживания кликов по товарам
+        function trackClick(productName) {
+            console.log('Клик по товару:', productName);
             
-            // Отправка данных в бот
-            tg.sendData(JSON.stringify(data));
+            // Можно отправить данные в Telegram бот
+            if (tg && tg.sendData) {
+                const data = {
+                    action: 'product_click',
+                    product: productName,
+                    timestamp: new Date().toISOString()
+                };
+                tg.sendData(JSON.stringify(data));
+            }
             
-            // Можно показать подтверждение
-            tg.showPopup({
-                title: 'Товар добавлен в корзину',
-                message: `${productName} - ${price} ₽`,
-                buttons: [{ type: 'ok' }]
-            });
+            // Можно добавить аналитику здесь
+        }
+        
+        // Функция отслеживания просмотров категорий
+        function trackView(category) {
+            console.log('Просмотр категории:', category);
+            
+            if (tg && tg.sendData) {
+                const data = {
+                    action: 'category_view',
+                    category: category,
+                    timestamp: new Date().toISOString()
+                };
+                tg.sendData(JSON.stringify(data));
+            }
         }
         
         // Обработчик нажатия на кнопку "Назад"
@@ -310,6 +479,24 @@
         
         // Показываем кнопку "Назад"
         tg.BackButton.show();
+        
+        // Предзагрузка изображений для лучшего UX
+        function preloadImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const image = new Image();
+                    image.src = src;
+                }
+            });
+        }
+        
+        // Запускаем предзагрузку после загрузки страницы
+        window.addEventListener('load', preloadImages);
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
