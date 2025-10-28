@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спортивное питание</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            padding: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--tg-theme-hint-color, #999999);
+            padding-bottom: 10px;
+        }
+        
+        .tab {
+            padding: 10px 15px;
+            background: none;
+            border: none;
+            color: var(--tg-theme-text-color, #000000);
+            cursor: pointer;
+            white-space: nowrap;
+            border-radius: 20px;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+        }
+        
+        .products-container {
+            display: none;
+        }
+        
+        .products-container.active {
+            display: block;
+        }
+        
+        .product-card {
+            background-color: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background-color: var(--tg-theme-bg-color, #ffffff);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .product-description {
+            color: var(--tg-theme-hint-color, #666666);
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--tg-theme-button-color, #2481cc);
+            margin-bottom: 12px;
+        }
+        
+        .buy-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .buy-button:hover {
+            opacity: 0.9;
+        }
+        
+        .buy-button:active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab('protein')">Протеин</button>
+        <button class="tab" onclick="switchTab('gainer')">Гейнеры</button>
+        <button class="tab" onclick="switchTab('fatburner')">Жиросжигатели</button>
+        <button class="tab" onclick="switchTab('creatine')">Креатин</button>
+        <button class="tab" onclick="switchTab('isotonic')">Изотоники</button>
+    </div>
+
+    <!-- Протеин -->
+    <div id="protein" class="products-container active">
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Whey Protein Gold Standard</div>
+            <div class="product-description">Сывороточный протеин премиум-класса с высокой степенью очистки</div>
+            <div class="product-price">2 990 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Whey Protein Gold Standard', 2990)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">ISO-100 Hydrolyzed</div>
+            <div class="product-description">Гидролизованный изолят сывороточного протеина</div>
+            <div class="product-price">3 490 ₽</div>
+            <button class="buy-button" onclick="buyProduct('ISO-100 Hydrolyzed', 3490)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Casein Pro</div>
+            <div class="product-description">Мицеллярный казеин для медленного усвоения</div>
+            <div class="product-price">2 790 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Casein Pro', 2790)">Купить</button>
+        </div>
+    </div>
+
+    <!-- Гейнеры -->
+    <div id="gainer" class="products-container">
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Serious Mass</div>
+            <div class="product-description">Высококалорийный гейнер для набора массы</div>
+            <div class="product-price">3 290 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Serious Mass', 3290)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">True-Mass</div>
+            <div class="product-description">Сбалансированный гейнер с комплексом белков</div>
+            <div class="product-price">2 890 ₽</div>
+            <button class="buy-button" onclick="buyProduct('True-Mass', 2890)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Mass-Tech</div>
+            <div class="product-description">Мощный массонаборный комплекс</div>
+            <div class="product-price">4 190 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Mass-Tech', 4190)">Купить</button>
+        </div>
+    </div>
+
+    <!-- Жиросжигатели -->
+    <div id="fatburner" class="products-container">
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Hydroxycut Hardcore</div>
+            <div class="product-description">Интенсивный жиросжигатель для опытных</div>
+            <div class="product-price">1 990 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Hydroxycut Hardcore', 1990)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Lipo-6 Black</div>
+            <div class="product-description">Мультифазный жиросжигатель</div>
+            <div class="product-price">2 290 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Lipo-6 Black', 2290)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Clenbutrol</div>
+            <div class="product-description">Термогенный жиросжигатель</div>
+            <div class="product-price">1 790 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Clenbutrol', 1790)">Купить</button>
+        </div>
+    </div>
+
+    <!-- Креатин -->
+    <div id="creatine" class="products-container">
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Creatine Monohydrate</div>
+            <div class="product-description">Креатин моногидрат 300 мг</div>
+            <div class="product-price">890 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Creatine Monohydrate', 890)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Creatine HCl</div>
+            <div class="product-description">Креатин гидрохлорид для лучшего усвоения</div>
+            <div class="product-price">1 290 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Creatine HCl', 1290)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Kre-Alkalyn</div>
+            <div class="product-description">Буферизованный креатин</div>
+            <div class="product-price">1 490 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Kre-Alkalyn', 1490)">Купить</button>
+        </div>
+    </div>
+
+    <!-- Изотоники -->
+    <div id="isotonic" class="products-container">
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Powerade Zero</div>
+            <div class="product-description">Изотонический напиток без сахара</div>
+            <div class="product-price">690 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Powerade Zero', 690)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">Gatorade Thirst Quencher</div>
+            <div class="product-description">Восстановление электролитов</div>
+            <div class="product-price">790 ₽</div>
+            <button class="buy-button" onclick="buyProduct('Gatorade Thirst Quencher', 790)">Купить</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="product-image">Изображение товара</div>
+            <div class="product-title">ISO Plus</div>
+            <div class="product-description">Комплекс электролитов и углеводов</div>
+            <div class="product-price">990 ₽</div>
+            <button class="buy-button" onclick="buyProduct('ISO Plus', 990)">Купить</button>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.enableClosingConfirmation();
+        
+        // Функция переключения вкладок
+        function switchTab(tabName) {
+            // Скрыть все контейнеры с товарами
+            const containers = document.querySelectorAll('.products-container');
+            containers.forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            // Показать выбранный контейнер
+            document.getElementById(tabName).classList.add('active');
+            
+            // Обновить активную вкладку
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+        }
+        
+        // Функция покупки товара
+        function buyProduct(productName, price) {
+            const data = {
+                product: productName,
+                price: price,
+                user: tg.initDataUnsafe.user
+            };
+            
+            // Отправка данных в бот
+            tg.sendData(JSON.stringify(data));
+            
+            // Можно показать подтверждение
+            tg.showPopup({
+                title: 'Товар добавлен в корзину',
+                message: `${productName} - ${price} ₽`,
+                buttons: [{ type: 'ok' }]
+            });
+        }
+        
+        // Обработчик нажатия на кнопку "Назад"
+        tg.BackButton.onClick(() => {
+            tg.close();
+        });
+        
+        // Показываем кнопку "Назад"
+        tg.BackButton.show();
+    </script>
+</body>
+</html>
